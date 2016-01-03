@@ -15,26 +15,37 @@ var superagent = require('superagent');
 var agent = require('superagent-promise')(superagent, Promise);
 
 var API = {
-  getUsersAsync: function() { 
-    return agent.get('/users/').end();
-  },
-  getDriversAsync: function() {
-    return agent.get('/drivers/').end();
-  },
-  getDriverAsync: function(driverId) {
-    return agent.get('/drivers/' + driverId).end();
-  }
+	getUsersAsync: function() { 
+		return agent.get('/users/').end();
+	},
+	getDriversAsync: function() {
+		return agent.get('/drivers/').end();
+	},
+	getDriverAsync: function(driverId) {
+		return agent.get('/drivers/' + driverId).end();
+	}
 };
 
-// Apply throttling before caching:
 cacheThrottle.throttlifyAll(API, {
 	concurrency: 1,
 	queueLimit: 100
 });
 cacheThrottle.cachifyAll(API);
-
-// Or for single functions:
+// NOTE: throttling should be applied before caching
+```
+Or for single functions:
+```javascript
 cacheThrottle.throttlify(API, 'getDriversAsync');
 cacheThrottle.cachify(API, 'getDriversAsync');
+```
+Or use `LockableCache` and `Throttler` directly:
+```javascript
+var throttler = new cacheThrottle.Throttler();
+var lockableCache = new cacheThrottle.LockableCache();
 
+lockableCache.callAsync('users', function() {
+	return throttler.throttleAsync(function() {
+		return agent.get('/users/').end();
+	});
+});
 ```
