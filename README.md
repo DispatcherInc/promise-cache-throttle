@@ -1,3 +1,5 @@
+[![Circle CI](https://circleci.com/gh/DispatcherInc/cache-throttle.svg?style=svg)](https://circleci.com/gh/DispatcherInc/cache-throttle)
+
 # cache-throttle
 Provides function caching and throttling.
 
