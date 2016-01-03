@@ -1,8 +1,14 @@
 # cache-throttle
 Provides function caching and throttling.
 
-- **cachify** - Ensures a function isn't called concurrently. Any subsequent calls before the first has resolved will wait and receive the same response.
-- **throttlify** - Limits the number of concurrent calls. Any additional calls will wait.
+- **throttler.throttleAsync**(func) - Limits the number of concurrent calls. Any additional calls will wait.
+- **lockableCache.callAsync**(key, func) - Ensures a function isn't called concurrently. Any subsequent calls with same key before the first has resolved will wait and receive the same response.
+
+Patching:
+- **cachify**(obj, method) - Patches the object's method with caching
+- **cachifyAll**(obj) - Patches all the object's methods with caching
+- **throttlify**(obj, method) - Patches the object's method with throttling
+- **throttlifyAll**(obj) - Pathes all the object's methods with caching
 
 ## Examples
 ```
