@@ -1,7 +1,7 @@
 [![Circle CI](https://circleci.com/gh/DispatcherInc/cache-throttle.svg?style=svg&circle-token=21468a65559575349852a5bf2fbad530bb56ede2)](https://circleci.com/gh/DispatcherInc/cache-throttle)
 
 # cache-throttle
-Provides function caching and throttling.
+Provides caching and throttling of promises.
 
 - **throttler.throttleAsync**(func) - Limits the number of concurrent calls. Any additional calls will wait.
 - **lockableCache.callAsync**(key, func) - Ensures a function isn't called concurrently. Any subsequent calls with same key before the first has resolved will wait and receive the same response.
