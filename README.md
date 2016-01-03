@@ -73,6 +73,12 @@ var getUsersAsyncThrottled = cacheThrottle.throttlify(API.getUsersAsync, {
 	context: API,
 	throttler: throttler
 });
+cacheThrottle.throttlifyAll(API, /* optional */ {
+    throttler: throttler,
+    filter: function(name, func, target) { // optional filter
+        return name === 'getDriverAsync';
+    }
+});
 ```
 Or use `LockableCache` and `Throttler` directly:
 ```javascript
