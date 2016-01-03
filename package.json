@@ -1,10 +1,10 @@
 {
   "name": "cache-throttle",
   "version": "1.0.0",
-  "description": "Proves both function caching and throttling.",
+  "description": "Provides function caching and throttling.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test -R mocha-jenkins-reporter --recursive --ui bdd --timeout 10000;"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,16 @@
   "bugs": {
     "url": "https://github.com/DispatcherInc/cache-throttle/issues"
   },
-  "homepage": "https://github.com/DispatcherInc/cache-throttle#readme"
+  "homepage": "https://github.com/DispatcherInc/cache-throttle#readme",
+  "dependencies": {
+    "@dispatcher/logger": "^1.0.10",
+    "@dispatcher/underscore-ext": "^1.0.10",
+    "bluebird": "^3.1.1"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "mocha-jenkins-reporter": "^0.1.9",
+    "nock": "^2.13.0",
+    "sinon": "^1.17.2"
+  }
 }

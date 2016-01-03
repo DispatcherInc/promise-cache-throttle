@@ -1,2 +1,2 @@
 # cache-throttle
-Proves both function caching and throttling.
+Provides function caching and throttling.
