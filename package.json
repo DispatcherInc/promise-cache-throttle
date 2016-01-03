@@ -1,0 +1,19 @@
+{
+  "name": "cache-throttle",
+  "version": "1.0.0",
+  "description": "Proves both function caching and throttling.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DispatcherInc/cache-throttle.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DispatcherInc/cache-throttle/issues"
+  },
+  "homepage": "https://github.com/DispatcherInc/cache-throttle#readme"
+}
