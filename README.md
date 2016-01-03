@@ -10,7 +10,7 @@ Patching:
 - **cachify**(obj, method) - Patches the object's method with caching
 - **cachifyAll**(obj) - Patches all the object's methods with caching
 - **throttlify**(obj, method) - Patches the object's method with throttling
-- **throttlifyAll**(obj) - Pathes all the object's methods with caching
+- **throttlifyAll**(obj) - Pathes all the object's methods with throttling
 
 ## Examples
 ```
