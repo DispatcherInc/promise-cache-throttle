@@ -8,9 +8,9 @@ Provides function caching and throttling.
 
 Patching:
 - **cachify**(func) - Returns the function wrapped with caching
-- **cachifyAll**(obj) - Patches all the object's methods with caching
+- **cachifyAll**(target) - Patches all the target's methods with caching
 - **throttlify**(func) - Retruns the function wrapped with throttling
-- **throttlifyAll**(obj) - Pathes all the object's methods with throttling
+- **throttlifyAll**(target) - Pathes all the target's methods with throttling
 
 Similar definitions to bluebird's promisify:
 - cachify and throttlify resemble [bluebird's promisify](http://bluebirdjs.com/docs/api/promise.promisify.html)
