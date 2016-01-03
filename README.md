@@ -50,8 +50,8 @@ cacheThrottle.cachifyAll(API, /* optional */ {
 ```
 Or for single functions:
 ```javascript
-cacheThrottle.throttlify(API.getDriversAsync, /* optional */ {context: API});
-cacheThrottle.cachify(API.getDriversAsync, /* optional */  {context: API});
+var getDriversAsyncThrottled = cacheThrottle.throttlify(API.getDriversAsync, /* optional */ {context: API});
+var getDriversAsyncCached = cacheThrottle.cachify(API.getDriversAsync, /* optional */  {context: API});
 ```
 Or use `LockableCache` and `Throttler` directly:
 ```javascript
