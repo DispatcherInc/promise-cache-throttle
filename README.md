@@ -12,6 +12,10 @@ Patching:
 - **throttlify**(func) - Retruns the function wrapped with throttling
 - **throttlifyAll**(obj) - Pathes all the object's methods with throttling
 
+Similar definitions to bluebird's promisify:
+- cachify and throttlify resemble [bluebird's promisify](http://bluebirdjs.com/docs/api/promise.promisify.html)
+- cachifyAll and throttlifyAll resemble [bluebird's promisifyAll](http://bluebirdjs.com/docs/api/promise.promisifyAll.html)
+
 ## Examples
 ```
 npm install @dispatcher/cache-throttle
