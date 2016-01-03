@@ -1,6 +1,6 @@
 {
   "name": "@dispatcher/cache-throttle",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Provides function caching and throttling.",
   "main": "index.js",
   "scripts": {
