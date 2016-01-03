@@ -80,9 +80,11 @@ describe('cachify', function() {
 				API.getUserAsyncCached('1'),
 				API.getDriverAsyncCached('1'),
 				API.getDriverAsyncCached('2')
-			]).spread(function(response1, response2, response3) {
+			]).spread(function(response1, response2, response3, response4) {
 				expect(API.getUserAsync.calledOnce).to.be.true;
 				expect(API.getDriverAsync.callCount).to.eql(2);
+				expect(response1).to.eql(response2);
+				expect(response3).to.not.eql(response4);
 			});
 		});
 
