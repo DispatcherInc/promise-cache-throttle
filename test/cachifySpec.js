@@ -69,7 +69,7 @@ describe('cachify', function() {
 		it('should support filtering', function() {
 			cachify.cachifyAll(API, {
 				suffix: 'Cached',
-				filter: function(fnName, fn, target) {
+				filter: function(fnName, fn, target, passesDefaultFilter) {
 					return _.includes(['getUsersAsync', 'getDriversAsync'], fnName);
 				}
 			});
@@ -77,7 +77,20 @@ describe('cachify', function() {
 			expect(API.getUsersAsyncCached).to.exist;
 			expect(API.getDriversAsyncCached).to.exist;
 			expect(API.getDriverAsyncCached).to.not.exist;
-		})
+		});
+
+		it('should not apply to special functions by default', function() {
+			API.constructor = function() {};
+			API._specialFunction = function() {};
+
+			cachify.cachifyAll(API, {
+				suffix: 'Cached'
+			});
+
+			expect(API.getUsersAsyncCached).to.exist;
+			expect(API.constructorCached).to.not.exist;
+			expect(API._specialFunctionCached).to.not.exist;
+		});
 	});
 
 });

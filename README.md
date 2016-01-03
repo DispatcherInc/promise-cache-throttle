@@ -42,13 +42,13 @@ cacheThrottle.throttlifyAll(API, /* optional */ {
 	concurrency: 1,
 	queueLimit: 100,
 	suffix: 'Throttled', // or leave empty to override methods
-	filter: function(name, func, target) { // optional filter
+	filter: function(name, func, target, passesDefaultFilter) { // optional filter
 		return _.includes(['getUsersAsync', 'getDriversAsync'], name);
 	}
 });
 cacheThrottle.cachifyAll(API, /* optional */ {
 	suffix: 'Cached', // or leave empty to override methods,
-	filter: function(name, func, target) { // optional filter
+	filter: function(name, func, target, passesDefaultFilter) { // optional filter
 		return _.includes(['getUsersAsync', 'getDriversAsync'], name);
 	}
 });
@@ -75,7 +75,7 @@ var getUsersAsyncThrottled = cacheThrottle.throttlify(API.getUsersAsync, {
 });
 cacheThrottle.throttlifyAll(API, /* optional */ {
     throttler: throttler,
-    filter: function(name, func, target) { // optional filter
+    filter: function(name, func, target, passesDefaultFilter) { // optional filter
         return name === 'getDriverAsync';
     }
 });

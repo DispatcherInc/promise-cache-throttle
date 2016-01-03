@@ -79,7 +79,7 @@ describe('throttlify', function() {
 		it('should support filtering', function() {
 			throttlify.throttlifyAll(API, {
 				suffix: 'Throttled',
-				filter: function(fnName, fn, target) {
+				filter: function(fnName, fn, target, passesDefaultFilter) {
 					return _.includes(['getUsersAsync', 'getDriversAsync'], fnName);
 				}
 			});
@@ -87,7 +87,20 @@ describe('throttlify', function() {
 			expect(API.getUsersAsyncThrottled).to.exist;
 			expect(API.getDriversAsyncThrottled).to.exist;
 			expect(API.getDriverAsyncThrottled).to.not.exist;
-		})
+		});
+
+		it('should not apply to special functions by default', function() {
+			API.constructor = function() {};
+			API._specialFunction = function() {};
+
+			throttlify.throttlifyAll(API, {
+				suffix: 'Throttled'
+			});
+
+			expect(API.getUsersAsyncThrottled).to.exist;
+			expect(API.constructorThrottled).to.not.exist;
+			expect(API._specialFunctionThrottled).to.not.exist;
+		});
 	});
 
 });
