@@ -5,8 +5,8 @@ Provides caching and throttling of promises.
 
 - **cachify**(func, options) - Returns the function wrapped with caching
 - **cachifyAll**(target, options) - Patches all the target's methods with caching
-- **throttlify**(func, options) - Retruns the function wrapped with throttling
-- **throttlifyAll**(target, options) - Pathes all the target's methods with throttling
+- **throttlify**(func, options) - Returns the function wrapped with throttling
+- **throttlifyAll**(target, options) - Patches all the target's methods with throttling
 
 Similar definitions to bluebird's promisify:
 - cachify and throttlify resemble [bluebird's promisify](http://bluebirdjs.com/docs/api/promise.promisify.html)
