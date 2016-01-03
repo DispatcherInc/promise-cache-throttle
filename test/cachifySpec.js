@@ -28,7 +28,12 @@ describe('cachify', function() {
 				return Promise.delay(100).then(function() {
 					return 'driver:' + driverId + ":" + Math.random();
 				});
-			})
+			}),
+			getUserAsync: sinon.spy(function(userId) {
+				return Promise.delay(100).then(function() {
+					return 'user:' + userId + ":" + Math.random();
+				});
+			}),
 		};
 	});
 
@@ -40,7 +45,7 @@ describe('cachify', function() {
 				API.getUsersAsync(),
 				API.getUsersAsync(),
 				API.getUsersAsync(),
-				API.getUsersAsync()
+				API.getUsersAsync(),
 			]).spread(function(response1, response2, response3, response4) {
 				expect(response1).to.equal(response2);
 				expect(response3).to.equal(response4);
@@ -63,6 +68,21 @@ describe('cachify', function() {
 				API.getUsersAsyncCached()
 			]).spread(function(response1, response2, response3) {
 				expect(API.getUsersAsync.calledOnce).to.be.true;
+			});
+		});
+
+		it('should cache per unique call', function() {
+			cachify.cachifyAll(API, {
+				suffix: 'Cached'
+			});
+			return Promise.all([
+				API.getUserAsyncCached('1'),
+				API.getUserAsyncCached('1'),
+				API.getDriverAsyncCached('1'),
+				API.getDriverAsyncCached('2')
+			]).spread(function(response1, response2, response3) {
+				expect(API.getUserAsync.calledOnce).to.be.true;
+				expect(API.getDriverAsync.callCount).to.eql(2);
 			});
 		});
 
