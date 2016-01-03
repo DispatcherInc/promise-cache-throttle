@@ -7,9 +7,9 @@ Provides function caching and throttling.
 - **lockableCache.callAsync**(key, func) - Ensures a function isn't called concurrently. Any subsequent calls with same key before the first has resolved will wait and receive the same response.
 
 Patching:
-- **cachify**(obj, method) - Patches the object's method with caching
+- **cachify**(func) - Returns the function wrapped with caching
 - **cachifyAll**(obj) - Patches all the object's methods with caching
-- **throttlify**(obj, method) - Patches the object's method with throttling
+- **throttlify**(func) - Retruns the function wrapped with throttling
 - **throttlifyAll**(obj) - Pathes all the object's methods with throttling
 
 ## Examples
@@ -43,8 +43,8 @@ cacheThrottle.cachifyAll(API);
 ```
 Or for single functions:
 ```javascript
-cacheThrottle.throttlify(API, 'getDriversAsync');
-cacheThrottle.cachify(API, 'getDriversAsync');
+cacheThrottle.throttlify(API.getDriversAsync, /* optional */ {context: API});
+cacheThrottle.cachify(API.getDriversAsync, /* optional */  {context: API});
 ```
 Or use `LockableCache` and `Throttler` directly:
 ```javascript
