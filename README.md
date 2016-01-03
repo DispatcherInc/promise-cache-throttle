@@ -40,9 +40,12 @@ var API = {
 
 cacheThrottle.throttlifyAll(API, /* optional */ {
 	concurrency: 1,
-	queueLimit: 100
+	queueLimit: 100,
+	suffix: 'Throttled' // or leave empty to override methods
 });
-cacheThrottle.cachifyAll(API);
+cacheThrottle.cachifyAll(API, /* optional */ {
+	suffix: 'Cached' // or leave empty to override methods
+});
 // NOTE: throttling should be applied before caching
 ```
 Or for single functions:
