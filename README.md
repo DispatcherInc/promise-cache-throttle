@@ -41,10 +41,16 @@ var API = {
 cacheThrottle.throttlifyAll(API, /* optional */ {
 	concurrency: 1,
 	queueLimit: 100,
-	suffix: 'Throttled' // or leave empty to override methods
+	suffix: 'Throttled', // or leave empty to override methods
+	filter: function(name, func, target) { // optional filter
+		return _.includes(['getUsersAsync', 'getDriversAsync'], name);
+	}
 });
 cacheThrottle.cachifyAll(API, /* optional */ {
-	suffix: 'Cached' // or leave empty to override methods
+	suffix: 'Cached' // or leave empty to override methods,
+	filter: function(name, func, target) { // optional filter
+		return _.includes(['getUsersAsync', 'getDriversAsync'], name);
+	}
 });
 // NOTE: throttling should be applied before caching
 ```
@@ -52,6 +58,21 @@ Or for single functions:
 ```javascript
 var getDriversAsyncThrottled = cacheThrottle.throttlify(API.getDriversAsync, /* optional */ {context: API});
 var getDriversAsyncCached = cacheThrottle.cachify(API.getDriversAsync, /* optional */  {context: API});
+```
+To apply throttlify with the same throttler:
+```javascript
+var throttler = new cacheThrottle.Throttler(/* optional */ {
+	concurrency: 1,
+	queueLimit: 100
+});
+var getDriversAsyncThrottled = cacheThrottle.throttlify(API.getDriversAsync, {
+	context: API,
+	throttler: throttler
+});
+var getUsersAsyncThrottled = cacheThrottle.throttlify(API.getUsersAsync, {
+	context: API,
+	throttler: throttler
+});
 ```
 Or use `LockableCache` and `Throttler` directly:
 ```javascript
