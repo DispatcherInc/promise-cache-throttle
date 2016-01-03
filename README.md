@@ -3,18 +3,18 @@
 # cache-throttle
 Provides caching and throttling of promises.
 
-- **throttler.throttleAsync**(func) - Limits the number of concurrent calls. Any additional calls will wait.
-- **lockableCache.callAsync**(key, func) - Ensures a function isn't called concurrently. Any subsequent calls with same key before the first has resolved will wait and receive the same response.
-
-Patching:
-- **cachify**(func) - Returns the function wrapped with caching
-- **cachifyAll**(target) - Patches all the target's methods with caching
-- **throttlify**(func) - Retruns the function wrapped with throttling
-- **throttlifyAll**(target) - Pathes all the target's methods with throttling
+- **cachify**(func, options) - Returns the function wrapped with caching
+- **cachifyAll**(target, options) - Patches all the target's methods with caching
+- **throttlify**(func, options) - Retruns the function wrapped with throttling
+- **throttlifyAll**(target, options) - Pathes all the target's methods with throttling
 
 Similar definitions to bluebird's promisify:
 - cachify and throttlify resemble [bluebird's promisify](http://bluebirdjs.com/docs/api/promise.promisify.html)
 - cachifyAll and throttlifyAll resemble [bluebird's promisifyAll](http://bluebirdjs.com/docs/api/promise.promisifyall.html)
+
+Can use the main logic directly:
+- **throttler.throttleAsync**(func) - Limits the number of concurrent calls. Any additional calls will wait.
+- **lockableCache.callAsync**(key, func) - Ensures a function isn't called concurrently. Any subsequent calls with same key before the first has resolved will wait and receive the same response.
 
 ## Examples
 ```
