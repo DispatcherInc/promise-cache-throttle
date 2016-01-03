@@ -34,7 +34,7 @@ var API = {
 	}
 };
 
-cacheThrottle.throttlifyAll(API, {
+cacheThrottle.throttlifyAll(API, /* optional */ {
 	concurrency: 1,
 	queueLimit: 100
 });
@@ -48,7 +48,10 @@ cacheThrottle.cachify(API, 'getDriversAsync');
 ```
 Or use `LockableCache` and `Throttler` directly:
 ```javascript
-var throttler = new cacheThrottle.Throttler();
+var throttler = new cacheThrottle.Throttler(/* optional */ {
+	concurrency: 1,
+	queueLimit: 100
+});
 var lockableCache = new cacheThrottle.LockableCache();
 
 lockableCache.callAsync('users', function() {
