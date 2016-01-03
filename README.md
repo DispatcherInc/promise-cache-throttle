@@ -47,7 +47,7 @@ cacheThrottle.throttlifyAll(API, /* optional */ {
 	}
 });
 cacheThrottle.cachifyAll(API, /* optional */ {
-	suffix: 'Cached' // or leave empty to override methods,
+	suffix: 'Cached', // or leave empty to override methods,
 	filter: function(name, func, target) { // optional filter
 		return _.includes(['getUsersAsync', 'getDriversAsync'], name);
 	}
