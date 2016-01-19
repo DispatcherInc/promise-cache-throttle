@@ -1,5 +1,5 @@
 {
-  "name": "cache-throttle",
+  "name": "promise-cache-throttle",
   "version": "1.0.11",
   "description": "Provides function caching and throttling.",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DispatcherInc/cache-throttle.git"
+    "url": "git+https://github.com/DispatcherInc/promise-cache-throttle.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/DispatcherInc/cache-throttle/issues"
+    "url": "https://github.com/DispatcherInc/promise-cache-throttle/issues"
   },
-  "homepage": "https://github.com/DispatcherInc/cache-throttle#readme",
+  "homepage": "https://github.com/DispatcherInc/promise-cache-throttle#readme",
   "dependencies": {
     "bluebird": "^3.1.1",
     "lodash": "^4.0.0"
