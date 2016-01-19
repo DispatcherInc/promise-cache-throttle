@@ -17,8 +17,8 @@
   },
   "homepage": "https://github.com/DispatcherInc/cache-throttle#readme",
   "dependencies": {
-    "@dispatcher/underscore-ext": "^1.0.10",
-    "bluebird": "^3.1.1"
+    "bluebird": "^3.1.1",
+    "lodash": "^4.0.0"
   },
   "devDependencies": {
     "chai": "^3.4.1",
