@@ -1,5 +1,5 @@
 {
-  "name": "@dispatcher/cache-throttle",
+  "name": "cache-throttle",
   "version": "1.0.11",
   "description": "Provides function caching and throttling.",
   "main": "index.js",
