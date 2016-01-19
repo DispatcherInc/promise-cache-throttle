@@ -1,5 +1,5 @@
 {
-  "name": "@dispatcher/cache-throttle",
+  "name": "cache-throttle",
   "version": "1.0.11",
   "description": "Provides function caching and throttling.",
   "main": "index.js",
@@ -17,9 +17,8 @@
   },
   "homepage": "https://github.com/DispatcherInc/cache-throttle#readme",
   "dependencies": {
-    "@dispatcher/logger": "^1.0.10",
-    "@dispatcher/underscore-ext": "^1.0.10",
-    "bluebird": "^3.1.1"
+    "bluebird": "^3.1.1",
+    "lodash": "^4.0.0"
   },
   "devDependencies": {
     "chai": "^3.4.1",

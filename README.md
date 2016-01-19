@@ -18,10 +18,10 @@ You can also use the underlying functions directly:
 
 ## Examples
 ```
-npm install @dispatcher/cache-throttle
+npm install cache-throttle
 ```
 ```javascript
-var cacheThrottle = require('@dispatcher/cache-throttle');
+var cacheThrottle = require('cache-throttle');
 var Promise = require('bluebird');
 var superagent = require('superagent');
 var agent = require('superagent-promise')(superagent, Promise);

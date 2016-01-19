@@ -4,7 +4,7 @@ var chai = require('chai');
 var expect = chai.expect;
 var sinon = require('sinon');
 var Promise = require('bluebird');
-var _ = require('@dispatcher/underscore-ext');
+var _ = require('lodash');
 
 var cachify = require('./../lib/cachify');
 
