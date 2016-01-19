@@ -1,6 +1,6 @@
-[![Circle CI](https://circleci.com/gh/DispatcherInc/cache-throttle.svg?style=svg&circle-token=21468a65559575349852a5bf2fbad530bb56ede2)](https://circleci.com/gh/DispatcherInc/cache-throttle)
+[![Circle CI](https://circleci.com/gh/DispatcherInc/promise-cache-throttle.svg?style=svg&circle-token=21468a65559575349852a5bf2fbad530bb56ede2)](https://circleci.com/gh/DispatcherInc/promise-cache-throttle)
 
-# cache-throttle
+# promise-cache-throttle
 Provides caching and throttling of promises.
 
 - **cachify**(func, options) - Returns the function wrapped with caching
@@ -18,10 +18,10 @@ You can also use the underlying functions directly:
 
 ## Examples
 ```
-npm install cache-throttle
+npm install promise-cache-throttle
 ```
 ```javascript
-var cacheThrottle = require('cache-throttle');
+var cacheThrottle = require('promise-cache-throttle');
 var Promise = require('bluebird');
 var superagent = require('superagent');
 var agent = require('superagent-promise')(superagent, Promise);
