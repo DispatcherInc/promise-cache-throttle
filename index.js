@@ -1,4 +1,4 @@
-var _ = require('@dispatcher/underscore-ext');
+var _ = require('lodash');
 
 module.exports = function(Promise) {
 	_.extend(Promise, require('./lib/cachify'));
