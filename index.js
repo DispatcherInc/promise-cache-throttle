@@ -1,7 +1,7 @@
 var _ = require('@dispatcher/underscore-ext');
 
-var index = {};
-_.extend(index, require('./lib/cachify'));
-_.extend(index, require('./lib/throttlify'));
-
-module.exports = index;
+module.exports = function(Promise) {
+	_.extend(Promise, require('./lib/cachify'));
+	_.extend(Promise, require('./lib/throttlify'));
+	return Promise;
+};
