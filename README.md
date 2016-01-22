@@ -61,7 +61,7 @@ var getDriversAsyncCached = Promise.cachify(API.getDriversAsync, /* optional */ 
 ```
 To apply throttlify with the same throttler:
 ```javascript
-var throttler = new Promise.Throttler(/* optional */ {
+var throttler = new Promise.throttlify.Throttler(/* optional */ {
 	concurrency: 1,
 	queueLimit: 100
 });
@@ -82,11 +82,11 @@ Promise.throttlifyAll(API, /* optional */ {
 ```
 Or use `LockableCache` and `Throttler` directly:
 ```javascript
-var throttler = new Promise.Throttler(/* optional */ {
+var throttler = new Promise.throttlify.Throttler(/* optional */ {
 	concurrency: 1,
 	queueLimit: 100
 });
-var lockableCache = new Promise.LockableCache();
+var lockableCache = new Promise.cachify.LockableCache();
 
 lockableCache.callAsync('users', function() {
 	return throttler.throttleAsync(function() {
