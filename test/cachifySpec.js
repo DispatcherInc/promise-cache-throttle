@@ -113,6 +113,36 @@ describe('cachify', function() {
 			expect(API.constructorCached).to.not.exist;
 			expect(API._specialFunctionCached).to.not.exist;
 		});
+
+		it('should support resolvers', function() {
+			API.specialFunctionAsync = sinon.spy(function(user, driver, str, num, bool) {
+				var args = arguments;
+				return Promise.delay(100).then(function() {
+					return Promise.resolve(args);
+				});
+			});
+			API.specialFunctionAsyncCached = cachify.cachify(API.specialFunctionAsync, {
+				context: API,
+				resolvers: [(user) => { return user.id }, (driver) => { return driver.driverId }, String, Number, Boolean]
+			});
+
+			Promise.all([
+				API.specialFunctionAsyncCached({id: "1", name: "Jen"}, {driverId: "1", name: "Tom"}, "SomeString", 12.34, true),
+				API.specialFunctionAsyncCached({id: "1", name: "Alice"}, {driverId: "1", name: "Brian"}, "SomeString", 12.34, true),
+				API.specialFunctionAsyncCached({id: "2", name: "Jess"}, {driverId: "2", name: "Tom"}, "SomeString", 12.34, true),
+				API.specialFunctionAsyncCached({id: "2", name: "Lucie"}, {driverId: "2", name: "Ted"}, "SomeString", 12.34, true),
+			]).spread(function(response1, response2, response3, response4) {
+				expect(API.specialFunctionAsync.callCount).to.eql(2);
+				expect(response1[0].name).to.eql("Jen");
+				expect(response2[0].name).to.eql(response1[0].name);
+				expect(response1[1].name).to.eql("Tom");
+				expect(response2[1].name).to.eql(response1[1].name);
+				expect(response3[0].name).to.eql("Jess");
+				expect(response4[0].name).to.eql(response3[0].name);
+				expect(response3[1].name).to.eql("Tom");
+				expect(response4[1].name).to.eql(response3[1].name);
+			});
+		});
 	});
 
 });
