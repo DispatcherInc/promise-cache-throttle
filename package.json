@@ -1,6 +1,6 @@
 {
   "name": "promise-cache-throttle",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Provides function caching and throttling.",
   "main": "index.js",
   "scripts": {
