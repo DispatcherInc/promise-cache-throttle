@@ -43,7 +43,10 @@ Promise.throttlifyAll(API, /* optional */ {
 	queueLimit: 100,
 	suffix: 'Throttled', // or leave empty to override methods
 	filter: function(name, func, target, passesDefaultFilter) { // optional filter
-		return _.includes(['getUsersAsync', 'getDriversAsync'], name);
+		return _.includes(['getUsersAsync', 'getDriverAsync'], name);
+	},
+	resolvers: {
+		"getDriverAsync": [String]
 	}
 });
 Promise.cachifyAll(API, /* optional */ {
