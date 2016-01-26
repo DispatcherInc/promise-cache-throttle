@@ -121,9 +121,12 @@ describe('cachify', function() {
 					return Promise.resolve(args);
 				});
 			});
-			API.specialFunctionAsyncCached = cachify.cachify(API.specialFunctionAsync, {
+			cachify.cachifyAll(API, {
 				context: API,
-				resolvers: [(user) => { return user.id }, (driver) => { return driver.driverId }, String, Number, Boolean]
+				suffix: 'Cached',
+				resolvers: {
+					"specialFunctionAsync": [(user) => { return user.id }, (driver) => { return driver.driverId }, String, Number, Boolean]
+				}
 			});
 
 			Promise.all([
