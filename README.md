@@ -57,7 +57,10 @@ Promise.cachifyAll(API, /* optional */ {
 Or for single functions:
 ```javascript
 var getDriversAsyncThrottled = Promise.throttlify(API.getDriversAsync, /* optional */ {context: API});
-var getDriversAsyncCached = Promise.cachify(API.getDriversAsync, /* optional */  {context: API});
+var getDriverAsyncCached = Promise.cachify(API.getDriverAsync, /* optional */  {
+	context: API,
+	resolvers: [(ob) => { return obj.id; }, String, Number, Boolean]
+});
 ```
 To apply throttlify with the same throttler:
 ```javascript
