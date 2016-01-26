@@ -27,33 +27,33 @@ var superagent = require('superagent');
 var agent = require('superagent-promise')(superagent, Promise);
 
 var API = {
-	getUsersAsync: function() { 
-		return agent.get('/users/').end();
-	},
-	getDriversAsync: function() {
-		return agent.get('/drivers/').end();
-	},
-	getDriverAsync: function(driverId) {
-		return agent.get('/drivers/' + driverId).end();
-	}
+    getUsersAsync: function() { 
+        return agent.get('/users/').end();
+    },
+    getDriversAsync: function() {
+        return agent.get('/drivers/').end();
+    },
+    getDriverAsync: function(driverId) {
+        return agent.get('/drivers/' + driverId).end();
+    }
 };
 
 Promise.throttlifyAll(API, /* optional */ {
-	concurrency: 1,
-	queueLimit: 100,
-	suffix: 'Throttled', // or leave empty to override methods
-	filter: function(name, func, target, passesDefaultFilter) { // optional filter
-		return _.includes(['getUsersAsync', 'getDriverAsync'], name);
-	},
-	resolvers: {
-		"getDriverAsync": [String]
-	}
+    concurrency: 1,
+    queueLimit: 100,
+    suffix: 'Throttled', // or leave empty to override methods
+    filter: function(name, func, target, passesDefaultFilter) { // optional filter
+        return _.includes(['getUsersAsync', 'getDriverAsync'], name);
+    },
+    resolvers: {
+        "getDriverAsync": [String]
+    }
 });
 Promise.cachifyAll(API, /* optional */ {
-	suffix: 'Cached', // or leave empty to override methods,
-	filter: function(name, func, target, passesDefaultFilter) { // optional filter
-		return _.includes(['getUsersAsync', 'getDriversAsync'], name);
-	}
+    suffix: 'Cached', // or leave empty to override methods,
+    filter: function(name, func, target, passesDefaultFilter) { // optional filter
+        return _.includes(['getUsersAsync', 'getDriversAsync'], name);
+    }
 });
 // NOTE: throttling should be applied before caching
 ```
@@ -61,23 +61,23 @@ Or for single functions:
 ```javascript
 var getDriversAsyncThrottled = Promise.throttlify(API.getDriversAsync, /* optional */ {context: API});
 var getDriverAsyncCached = Promise.cachify(API.getDriverAsync, /* optional */  {
-	context: API,
-	resolvers: [(ob) => { return obj.id; }, String, Number, Boolean]
+    context: API,
+    resolvers: [(ob) => { return obj.id; }, String, Number, Boolean]
 });
 ```
 To apply throttlify with the same throttler:
 ```javascript
 var throttler = new Promise.throttlify.Throttler(/* optional */ {
-	concurrency: 1,
-	queueLimit: 100
+    concurrency: 1,
+    queueLimit: 100
 });
 var getDriversAsyncThrottled = Promise.throttlify(API.getDriversAsync, {
-	context: API,
-	throttler: throttler
+    context: API,
+    throttler: throttler
 });
 var getUsersAsyncThrottled = Promise.throttlify(API.getUsersAsync, {
-	context: API,
-	throttler: throttler
+    context: API,
+    throttler: throttler
 });
 Promise.throttlifyAll(API, /* optional */ {
     throttler: throttler,
@@ -89,14 +89,14 @@ Promise.throttlifyAll(API, /* optional */ {
 Or use `LockableCache` and `Throttler` directly:
 ```javascript
 var throttler = new Promise.throttlify.Throttler(/* optional */ {
-	concurrency: 1,
-	queueLimit: 100
+    concurrency: 1,
+    queueLimit: 100
 });
 var lockableCache = new Promise.cachify.LockableCache();
 
 lockableCache.callAsync('users', function() {
-	return throttler.throttleAsync(function() {
-		return agent.get('/users/').end();
-	});
+    return throttler.throttleAsync(function() {
+        return agent.get('/users/').end();
+    });
 });
 ```
